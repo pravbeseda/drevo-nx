@@ -60,6 +60,11 @@
     },
     "@nx/angular:component": {
       "style": "scss"
+    },
+    "@ngneat/spectator:spectator-component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "jest": true
     }
   },
   "defaultProject": "drevo",
