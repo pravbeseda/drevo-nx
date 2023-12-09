@@ -1,16 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'drevo-root',
   standalone: true,
-    imports: [
-      RouterModule
-    ],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-
-}
+export class AppComponent {}
