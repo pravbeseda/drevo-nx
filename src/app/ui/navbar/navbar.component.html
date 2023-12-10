@@ -1,13 +1,17 @@
 <mat-toolbar>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
+  <button mat-icon-button class="menu-icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <span class="mr-3">My App</span>
+
+  <div class="nav-menu">
+    <a mat-flat-button routerLink="">Энциклопедия</a>
+    <a mat-flat-button routerLink="news">Новости</a>
+    <a mat-flat-button routerLink="forum">Форум</a>
+  </div>
+
   <span class="spacer"></span>
+
   <button
     mat-icon-button
     class="example-icon favorite-icon"
