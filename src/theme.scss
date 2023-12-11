@@ -43,6 +43,20 @@ $dark-theme: mat.define-dark-theme(
                 )
 );
 
+$black-theme: mat.define-dark-theme(
+                (
+                        color: (
+                                primary: $theme-primary,
+                                accent: $theme-accent,
+                                warn: $theme-warn,
+                        ),
+                )
+);
+
 .dark-mode {
         @include mat.all-component-colors($dark-theme);
+}
+
+.black-mode {
+  @include mat.all-component-colors($black-theme);
 }
