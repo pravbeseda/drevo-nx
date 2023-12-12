@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
-import { Theme, UserService } from '../../core/services/user/user.service';
+import { Theme, ThemeService } from '../../core/services/theme.service';
 
 interface ThemeItem {
   name: string;
@@ -24,7 +24,7 @@ export class ThemeSwitcherComponent {
     { name: 'Черная тема', value: Theme.black },
   ];
 
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: ThemeService) {}
 
   public setTheme(theme: ThemeItem): void {
     this.userService.setTheme(theme.value);
