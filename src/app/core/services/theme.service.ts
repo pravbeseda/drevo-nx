@@ -7,19 +7,20 @@ export enum Theme {
   light = `light${themePostfix}`,
   dark = `dark${themePostfix}`,
   black = `black${themePostfix}`,
+  green = `green${themePostfix}`,
 }
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private userThemeSubject = new BehaviorSubject<Theme>(Theme.light);
-  public userTheme$ = this.userThemeSubject.asObservable();
+  private currentThemeSubject = new BehaviorSubject<Theme>(Theme.light);
+  public currentTheme$ = this.currentThemeSubject.asObservable();
 
   constructor(private readonly overlayContainer: OverlayContainer) {
-    this.setOverlayContainerTheme(this.userThemeSubject.getValue());
+    this.setOverlayContainerTheme(this.currentThemeSubject.getValue());
   }
   public setTheme(theme: Theme): void {
-    this.userThemeSubject.next(theme);
+    this.currentThemeSubject.next(theme);
     this.setOverlayContainerTheme(theme);
   }
 

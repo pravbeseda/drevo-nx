@@ -17,7 +17,7 @@
         "tsConfig": "./tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["./src/favicon.ico", "./src/assets"],
-        "styles": ["./src/theme-light.scss", "./src/theme-dark.scss", "./src/theme-black.scss", "./src/styles.scss"],
+        "styles": ["./src/theme-light.scss", "./src/theme-green.scss", "./src/theme-dark.scss", "./src/theme-black.scss", "./src/styles.scss"],
         "scripts": [],
         "server": "src/main.server.ts",
         "prerender": true,

@@ -15,6 +15,6 @@ const MATERIAL_IMPORTS = [MatButtonModule];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
-  public readonly theme$ = this.userService.userTheme$;
-  constructor(private readonly userService: ThemeService) {}
+  public readonly theme$ = this.themeService.currentTheme$;
+  constructor(private readonly themeService: ThemeService) {}
 }

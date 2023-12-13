@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="theme$ | async">
   <button mat-icon-button class="menu-icon">
     <mat-icon>menu</mat-icon>
   </button>
