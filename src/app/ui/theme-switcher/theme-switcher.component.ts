@@ -24,9 +24,9 @@ export class ThemeSwitcherComponent {
     { name: 'Черная тема', value: Theme.black },
   ];
 
-  constructor(private readonly userService: ThemeService) {}
+  constructor(private readonly themeService: ThemeService) {}
 
   public setTheme(theme: ThemeItem): void {
-    this.userService.setTheme(theme.value);
+    this.themeService.setTheme(theme.value);
   }
 }

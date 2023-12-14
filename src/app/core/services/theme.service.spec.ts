@@ -1,13 +1,53 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
-import { ThemeService } from './theme.service';
+import { Theme, ThemeService } from './theme.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 describe('ThemeService', () => {
   let spectator: SpectatorService<ThemeService>;
-  const createService = createServiceFactory(ThemeService);
+  let overlayContainer: OverlayContainer;
+  const THEMES = [Theme.light, Theme.dark, Theme.black];
 
-  beforeEach(() => (spectator = createService()));
+  const createService = createServiceFactory({
+    service: ThemeService,
+  });
 
-  it('should...', () => {
+  beforeEach(() => {
+    spectator = createService();
+    overlayContainer = spectator.inject(OverlayContainer);
+  });
+
+  it('should be created', () => {
     expect(spectator.service).toBeTruthy();
+  });
+
+  THEMES.forEach((theme) => {
+    describe(`when theme is ${theme}`, () => {
+      it('should set theme', () => {
+        const currentThemeSpy = jest.fn();
+        spectator.service.currentTheme$.subscribe(currentThemeSpy);
+
+        spectator.service.setTheme(theme);
+        expect(currentThemeSpy).toHaveBeenCalledWith(theme);
+      });
+
+      it('should set overlay container theme', () => {
+        const overlayContainerClasses = new Set(
+          THEMES.filter((t) => t !== theme)
+        );
+        overlayContainer
+          .getContainerElement()
+          .classList.add(...overlayContainerClasses);
+
+        spectator.service.setTheme(theme);
+
+        THEMES.forEach((checkedTheme) => {
+          expect(
+            overlayContainer
+              .getContainerElement()
+              .classList.contains(checkedTheme)
+          ).toBe(checkedTheme === theme);
+        });
+      });
+    });
   });
 });

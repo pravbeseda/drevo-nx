@@ -6,8 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "build:ci": "nx build drevo --base-href https://pravbeseda.github.io/drevo-nx/ && cp dist/drevo/browser/index.html dist/drevo/browser/404.html",
-    "test:alt": "nx test",
-    "test": "jest --verbose --coverage --coverageReporters='text-summary'",
+    "test": "nx test",
+    "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
     "coverage": "nx test --code-coverage",
     "lint": "nx lint"
   },

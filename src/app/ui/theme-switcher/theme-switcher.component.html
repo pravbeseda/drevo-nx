@@ -1,9 +1,14 @@
 <mat-menu #menu="matMenu">
-  <button *ngFor="let theme of themes" mat-menu-item (click)="setTheme(theme)">
+  <button
+    *ngFor="let theme of themes"
+    [attr.data-qa-theme]="theme.value"
+    mat-menu-item
+    (click)="setTheme(theme)"
+  >
     {{ theme.name }}
   </button>
 </mat-menu>
 
-<button mat-icon-button [matMenuTriggerFor]="menu" data-qa-menu="themes">
+<button id="theme-menu-button" mat-icon-button [matMenuTriggerFor]="menu">
   <mat-icon>format_color_fill</mat-icon>
 </button>
