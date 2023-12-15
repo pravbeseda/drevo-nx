@@ -1,4 +1,8 @@
-<div [class]="theme$ | async" class="mat-app-background h-100">
+<div
+  id="layout-wrapper"
+  [class]="theme$ | async"
+  class="mat-app-background h-100"
+>
   <drevo-navbar></drevo-navbar>
   <ng-content></ng-content>
 </div>

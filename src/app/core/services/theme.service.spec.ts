@@ -1,11 +1,11 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
-import { Theme, ThemeService } from './theme.service';
+import { ThemeService } from './theme.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { THEMES } from '../../shared/consts/themes';
 
 describe('ThemeService', () => {
   let spectator: SpectatorService<ThemeService>;
   let overlayContainer: OverlayContainer;
-  const THEMES = [Theme.light, Theme.dark, Theme.black];
 
   const createService = createServiceFactory({
     service: ThemeService,
