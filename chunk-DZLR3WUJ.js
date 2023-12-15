@@ -1,0 +1,1 @@
+import{ca as o,jb as i,kb as a,ub as r,zb as c}from"./chunk-XIQZZGQG.js";var p=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["drevo-main"]],standalone:!0,features:[c],decls:2,vars:0,template:function(n,m){n&1&&(i(0,"p"),r(1,"main works!"),a())},changeDetection:0});let t=e;return t})();export{p as MainComponent};
