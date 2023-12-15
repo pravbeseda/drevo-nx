@@ -1936,6 +1936,11 @@
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.0.tgz#0709e9f4cb252351c609c6e6d8d6779a8d25edff"
   integrity sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==
 
+"@fireflysemantics/sass-logger@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@fireflysemantics/sass-logger/-/sass-logger-1.0.2.tgz#93e3335e8ba92cc44dc20292f572004a861bd92a"
+  integrity sha512-mgV7YXed43JI1FE3nGbkcrpJZg8SEDn0NeUBpSkDTOBkb5zDWAXi5zLO1HS1sksd372U//HKtbpbK0ZmC1y98A==
+
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.13"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.13.tgz#075dc9684f40a531d9b26b0822153c1e832ee297"

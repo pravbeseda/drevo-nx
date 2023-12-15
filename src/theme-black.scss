@@ -1,0 +1,29 @@
+// https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use '@fireflysemantics/sass-logger' as logger;
+
+@include mat.core();
+
+// Available color palettes: https://material.io/design/color/
+$theme-primary: mat.define-palette(mat.$indigo-palette);
+$theme-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$theme-warn: mat.define-palette(mat.$red-palette);
+
+$black-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn,
+    ),
+  )
+);
+// change the background color to black
+$black-theme: map.set($black-theme, color, background, background, black);
+// @debug logger.pretty-map($black-theme);
+
+.black-mode {
+  @include mat.all-component-colors($black-theme);
+}

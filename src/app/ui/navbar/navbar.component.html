@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar id="navbar" [ngClass]="theme$ | async">
   <button mat-icon-button class="menu-icon">
     <mat-icon>menu</mat-icon>
   </button>
@@ -26,4 +26,5 @@
   >
     <mat-icon>share</mat-icon>
   </button>
+  <drevo-theme-switcher></drevo-theme-switcher>
 </mat-toolbar>

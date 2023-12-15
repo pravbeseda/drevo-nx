@@ -1,6 +1,6 @@
 # Example: https://github.com/rodrigokamada/angular-github-actions
 # https://github.com/peaceiris/actions-gh-pages
-name: ci
+name: CI Build
 
 on:
   push:
