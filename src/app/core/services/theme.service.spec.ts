@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { ThemeService } from './theme.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { THEMES } from '../../shared/consts/themes';
