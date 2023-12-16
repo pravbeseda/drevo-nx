@@ -6,17 +6,11 @@ describe('assertIsDefined function', () => {
     expect(() => assertIsDefined(value, 'Test')).not.toThrow();
   });
 
-  it('should throw an error if value is undefined', () => {
-    const value: string | undefined = undefined;
-    expect(() => assertIsDefined(value, 'Test')).toThrow(
-      "Expected 'Test' to be defined, but received undefined"
-    );
-  });
-
-  it('should throw an error if value is null', () => {
-    const value: string | null = null;
-    expect(() => assertIsDefined(value, 'Test')).toThrow(
-      "Expected 'Test' to be defined, but received null"
-    );
+  [null, undefined].forEach((value) => {
+    it(`should throw an error if value is ${value}`, () => {
+      expect(() => assertIsDefined(value, 'Test')).toThrow(
+        `Expected 'Test' to be defined, but received ${value}`
+      );
+    });
   });
 });
