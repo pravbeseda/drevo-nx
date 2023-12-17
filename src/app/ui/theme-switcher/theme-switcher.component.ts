@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { CommonModule } from '@angular/common';
 import { Theme, ThemeService } from '../../core/services/theme.service';
 
 interface ThemeItem {
@@ -12,7 +11,7 @@ interface ThemeItem {
 @Component({
   selector: 'drevo-theme-switcher',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatMenuModule, CommonModule],
+  imports: [MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './theme-switcher.component.html',
   styleUrl: './theme-switcher.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
