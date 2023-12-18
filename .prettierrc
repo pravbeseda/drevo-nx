@@ -2,7 +2,7 @@
   "singleQuote": true,
   "singleAttributePerLine": true,
   "arrowParens": "avoid",
-  "tabWidth": 2,
+  "tabWidth": 4,
   "htmlWhitespaceSensitivity": "ignore",
   "useTabs": false,
   "semi": true,

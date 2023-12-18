@@ -1,33 +1,33 @@
 <mat-toolbar
-  id="navbar"
-  [ngClass]="theme$ | async">
-  <button
-    mat-icon-button
-    class="menu-icon"
-    (click)="toggleSidebar.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="mr-3">My App</span>
+    id="navbar"
+    [ngClass]="theme$ | async">
+    <button
+        mat-icon-button
+        class="menu-icon"
+        (click)="toggleSidebar.emit()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mr-3">Древо</span>
 
-  <div class="nav-menu">
-    <a
-      mat-flat-button
-      routerLink="">
-      Энциклопедия
-    </a>
-    <a
-      mat-flat-button
-      routerLink="news">
-      Новости
-    </a>
-    <a
-      mat-flat-button
-      routerLink="forum">
-      Форум
-    </a>
-  </div>
+    <div class="nav-menu">
+        <a
+            mat-flat-button
+            routerLink="">
+            Энциклопедия
+        </a>
+        <a
+            mat-flat-button
+            routerLink="news">
+            Новости
+        </a>
+        <a
+            mat-flat-button
+            routerLink="forum">
+            Форум
+        </a>
+    </div>
 
-  <span class="spacer"></span>
+    <span class="spacer"></span>
 
-  <drevo-theme-switcher></drevo-theme-switcher>
+    <drevo-theme-switcher></drevo-theme-switcher>
 </mat-toolbar>
