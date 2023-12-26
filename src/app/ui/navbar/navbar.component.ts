@@ -12,6 +12,7 @@ import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.compone
 import { Theme, ThemeService } from '../../core/services/theme.service';
 import { map } from 'rxjs';
 import { AsyncPipe, NgClass } from '@angular/common';
+import { NavbarMenuContentComponent } from '../navbar-menu-content/navbar-menu-content.component';
 
 const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
 
@@ -24,6 +25,7 @@ const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
         ThemeSwitcherComponent,
         AsyncPipe,
         NgClass,
+        NavbarMenuContentComponent,
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
