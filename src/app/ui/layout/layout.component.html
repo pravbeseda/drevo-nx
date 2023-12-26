@@ -1,8 +1,41 @@
 <div
-  id="layout-wrapper"
-  [class]="theme$ | async"
-  class="mat-app-background hw-100">
-  <drevo-sidebar>
-    <ng-content></ng-content>
-  </drevo-sidebar>
+    id="layout-wrapper"
+    [class]="theme$ | async"
+    class="mat-app-background hw-100">
+    @if ({ mobileMode: mobileMode$ | async }; as async) {
+    <div
+        class="container"
+        [class.is-mobile]="async.mobileMode">
+        <drevo-navbar
+            id="navbar"
+            (toggleLeftSidebar)="leftSidenav.toggle()"
+            (toggleRightSidebar)="rightSidenav.toggle()"></drevo-navbar>
+
+        <mat-sidenav-container
+            class="sidenav-container"
+            [hasBackdrop]="async.mobileMode">
+            <mat-sidenav
+                #leftSidenav
+                [mode]="async.mobileMode ? 'over' : 'side'"
+                [fixedInViewport]="async.mobileMode">
+                <mat-nav-list>
+                    <drevo-sidebar-left-content></drevo-sidebar-left-content>
+                </mat-nav-list>
+            </mat-sidenav>
+
+            <mat-sidenav
+                #rightSidenav
+                mode="side"
+                position="end">
+                <mat-nav-list>
+                    <drevo-sidebar-right-content></drevo-sidebar-right-content>
+                </mat-nav-list>
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+                <ng-content></ng-content>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+    }
 </div>
