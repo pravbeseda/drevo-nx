@@ -27,7 +27,7 @@
         }
 
         ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.6); // fix for dark modes backdrop
         }
     }
 }

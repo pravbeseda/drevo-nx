@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,19 +16,26 @@ import { AsyncPipe, NgClass } from '@angular/common';
 const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
 
 @Component({
-  selector: 'drevo-navbar',
-  standalone: true,
-  imports: [...MATERIAL_IMPORTS, RouterModule, ThemeSwitcherComponent, AsyncPipe, NgClass],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'drevo-navbar',
+    standalone: true,
+    imports: [
+        ...MATERIAL_IMPORTS,
+        RouterModule,
+        ThemeSwitcherComponent,
+        AsyncPipe,
+        NgClass,
+    ],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  @Output() public readonly toggleSidebar = new EventEmitter<void>();
+    @Output() public readonly toggleLeftSidebar = new EventEmitter<void>();
+    @Output() public readonly toggleRightSidebar = new EventEmitter<void>();
 
-  public readonly theme$ = this.themeService.currentTheme$.pipe(
-    map(theme => (theme === Theme.light ? Theme.green : ''))
-  );
+    public readonly theme$ = this.themeService.currentTheme$.pipe(
+        map(theme => (theme === Theme.light ? Theme.green : ''))
+    );
 
-  constructor(private readonly themeService: ThemeService) {}
+    constructor(private readonly themeService: ThemeService) {}
 }

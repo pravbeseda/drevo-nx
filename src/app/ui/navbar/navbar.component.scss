@@ -1,9 +1,15 @@
+$navbar-height: 3rem;
+
+#navbar {
+    height: $navbar-height;
+}
+
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .nav-menu {
-  a {
-    background-color: transparent;
-  }
+    a {
+        background-color: transparent;
+    }
 }

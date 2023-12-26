@@ -4,8 +4,8 @@
     <button
         mat-icon-button
         class="menu-icon"
-        (click)="toggleSidebar.emit()">
-        <mat-icon>menu</mat-icon>
+        (click)="toggleLeftSidebar.emit()">
+        <mat-icon class="material-symbols-outlined">menu</mat-icon>
     </button>
     <span class="mr-3">Древо</span>
 
@@ -30,4 +30,11 @@
     <span class="spacer"></span>
 
     <drevo-theme-switcher></drevo-theme-switcher>
+
+    <button
+        mat-icon-button
+        class="menu-icon"
+        (click)="toggleRightSidebar.emit()">
+        <mat-icon class="material-symbols-outlined">dock_to_left</mat-icon>
+    </button>
 </mat-toolbar>
