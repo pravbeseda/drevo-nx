@@ -1,20 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { AsyncPipe } from '@angular/common';
-import { LayoutService } from '../../core/services/layout.service';
+import { LayoutService, ScreenSize } from '../../core/services/layout.service';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { map } from 'rxjs';
 import { SidebarLeftContentComponent } from '../sidebar-left-content/sidebar-left-content.component';
 import { SidebarRightContentComponent } from '../sidebar-right-content/sidebar-right-content.component';
 
 const MATERIAL_IMPORTS = [MatButtonModule];
 
-@UntilDestroy()
 @Component({
     selector: 'drevo-layout',
     standalone: true,
@@ -33,22 +31,18 @@ const MATERIAL_IMPORTS = [MatButtonModule];
     styleUrl: './layout.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
+    ScreenSize = ScreenSize;
     public readonly theme$ = this.themeService.currentTheme$;
-    private readonly _mobileModeSubject = new BehaviorSubject<boolean>(true);
-    public readonly mobileMode$ = this._mobileModeSubject.asObservable();
+    public readonly currentScreenSize$ = this.layoutService.currentScreenSize$;
+    public readonly isMobile$ = this.layoutService.currentScreenSize$.pipe(
+        map(size => size < ScreenSize.Medium)
+    );
+
     constructor(
         private readonly themeService: ThemeService,
         private readonly layoutService: LayoutService
     ) {}
-
-    ngOnInit(): void {
-        this.layoutService.mobileQuery$
-            .pipe(untilDestroyed(this))
-            .subscribe(mobileQuery => {
-                this._mobileModeSubject.next(mobileQuery.matches);
-            });
-    }
 
     public toggleSidebar(): void {
         this.layoutService.toggleSidebar();

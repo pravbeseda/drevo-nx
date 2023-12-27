@@ -2,10 +2,10 @@
     id="layout-wrapper"
     [class]="theme$ | async"
     class="mat-app-background hw-100">
-    @if ({ mobileMode: mobileMode$ | async }; as async) {
+    @if ({ isMobile: isMobile$ | async }; as async) {
     <div
         class="container"
-        [class.is-mobile]="async.mobileMode">
+        [class.is-mobile]="async.isMobile">
         <drevo-navbar
             id="navbar"
             (toggleLeftSidebar)="leftSidenav.toggle()"
@@ -13,11 +13,11 @@
 
         <mat-sidenav-container
             class="sidenav-container"
-            [hasBackdrop]="async.mobileMode">
+            [hasBackdrop]="async.isMobile">
             <mat-sidenav
                 #leftSidenav
-                [mode]="async.mobileMode ? 'over' : 'side'"
-                [fixedInViewport]="async.mobileMode">
+                [mode]="async.isMobile ? 'over' : 'side'"
+                [fixedInViewport]="async.isMobile">
                 <mat-nav-list>
                     <drevo-sidebar-left-content></drevo-sidebar-left-content>
                 </mat-nav-list>
