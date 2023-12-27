@@ -13,6 +13,7 @@ import { Theme, ThemeService } from '../../core/services/theme.service';
 import { map } from 'rxjs';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { NavbarMenuContentComponent } from '../navbar-menu-content/navbar-menu-content.component';
+import { LayoutService } from '../../core/services/layout.service';
 
 const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
 
@@ -35,9 +36,13 @@ export class NavbarComponent {
     @Output() public readonly toggleLeftSidebar = new EventEmitter<void>();
     @Output() public readonly toggleRightSidebar = new EventEmitter<void>();
 
+    public readonly isMobile$ = this.layoutService.isMobile$;
     public readonly theme$ = this.themeService.currentTheme$.pipe(
         map(theme => (theme === Theme.light ? Theme.green : ''))
     );
 
-    constructor(private readonly themeService: ThemeService) {}
+    constructor(
+        private readonly themeService: ThemeService,
+        private readonly layoutService: LayoutService
+    ) {}
 }

@@ -36,6 +36,9 @@ export class LayoutService {
             Breakpoints.XLarge,
         ])
         .pipe(map(this.screenSizeMapper));
+    public readonly isMobile$ = this.currentScreenSize$.pipe(
+        map(size => size < ScreenSize.Medium)
+    );
 
     private readonly _sidebarOpened = new BehaviorSubject(false);
     public readonly sidebarOpened$ = this._sidebarOpened.asObservable();

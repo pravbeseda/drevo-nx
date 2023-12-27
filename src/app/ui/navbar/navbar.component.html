@@ -1,3 +1,4 @@
+@if ({ isMobile: isMobile$ | async }; as async) {
 <mat-toolbar
     id="navbar"
     [ngClass]="theme$ | async">
@@ -9,9 +10,11 @@
     </button>
     <span class="mr-3">Древо</span>
 
+    @if(!async.isMobile) {
     <div class="nav-menu">
         <drevo-navbar-menu-content></drevo-navbar-menu-content>
     </div>
+    }
 
     <span class="spacer"></span>
 
@@ -24,3 +27,4 @@
         <mat-icon class="material-symbols-outlined">dock_to_left</mat-icon>
     </button>
 </mat-toolbar>
+}
