@@ -2,7 +2,8 @@
     id="layout-wrapper"
     [class]="theme$ | async"
     class="mat-app-background hw-100">
-    @if ({ isMobile: isMobile$ | async }; as async) {
+    @if ({ isMobile: isMobile$ | async, isLargeScreen: isLargeScreen$ | async };
+    as async) {
     <div
         class="container"
         [class.is-mobile]="async.isMobile">
@@ -16,6 +17,7 @@
             [hasBackdrop]="async.isMobile">
             <mat-sidenav
                 #leftSidenav
+                [opened]="async.isLargeScreen"
                 [mode]="async.isMobile ? 'over' : 'side'"
                 [fixedInViewport]="async.isMobile">
                 <mat-nav-list>
@@ -25,6 +27,7 @@
 
             <mat-sidenav
                 #rightSidenav
+                [opened]="async.isLargeScreen"
                 mode="side"
                 position="end">
                 <mat-nav-list>
