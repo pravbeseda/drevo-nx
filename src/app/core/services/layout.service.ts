@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { map } from 'rxjs';
 import {
     BreakpointObserver,
     BreakpointState,
@@ -40,14 +40,7 @@ export class LayoutService {
         map(size => size < ScreenSize.Medium)
     );
 
-    private readonly _sidebarOpened = new BehaviorSubject(false);
-    public readonly sidebarOpened$ = this._sidebarOpened.asObservable();
-
     constructor(private readonly breakpointObserver: BreakpointObserver) {}
-
-    public toggleSidebar(): void {
-        this._sidebarOpened.next(!this._sidebarOpened.getValue());
-    }
 
     private screenSizeMapper(breakpointState: BreakpointState): ScreenSize {
         let result = ScreenSize.Unknown;

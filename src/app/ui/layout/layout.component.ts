@@ -42,8 +42,4 @@ export class LayoutComponent {
         private readonly themeService: ThemeService,
         private readonly layoutService: LayoutService
     ) {}
-
-    public toggleSidebar(): void {
-        this.layoutService.toggleSidebar();
-    }
 }
