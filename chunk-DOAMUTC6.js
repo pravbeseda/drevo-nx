@@ -1,1 +1,0 @@
-import{ca as o,jb as i,kb as a,ub as r,zb as c}from"./chunk-XIQZZGQG.js";var m=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["drevo-articles"]],standalone:!0,features:[c],decls:2,vars:0,template:function(n,l){n&1&&(i(0,"p"),r(1,"articles works!"),a())},changeDetection:0});let t=e;return t})();export{m as ArticlesComponent};
