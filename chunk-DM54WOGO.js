@@ -1,1 +1,0 @@
-import{Ab as r,Fb as s,da as o,nb as i,ob as a}from"./chunk-6B6X6FWG.js";var p=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["drevo-news"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,d){n&1&&(i(0,"p"),r(1,"news works!"),a())},changeDetection:0});let t=e;return t})();export{p as NewsComponent};
