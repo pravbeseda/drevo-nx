@@ -19,10 +19,10 @@ export class ThemeService {
 
     constructor(
         private readonly overlayContainer: OverlayContainer,
-        private readonly responsive: BreakpointObserver
+        private readonly breakpointObserver: BreakpointObserver
     ) {
         this.setOverlayContainerTheme(this.currentThemeSubject.getValue());
-        this.responsive
+        this.breakpointObserver
             .observe(['(prefers-color-scheme: dark)'])
             .subscribe(result => {
                 const isDarkMode = result.matches;
