@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,27 +12,37 @@ import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.compone
 import { Theme, ThemeService } from '../../core/services/theme.service';
 import { map } from 'rxjs';
 import { AsyncPipe, NgClass } from '@angular/common';
+import { NavbarMenuContentComponent } from '../navbar-menu-content/navbar-menu-content.component';
+import { LayoutService } from '../../core/services/layout.service';
 
 const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
 
 @Component({
-  selector: 'drevo-navbar',
-  standalone: true,
-  imports: [
-    ...MATERIAL_IMPORTS,
-    RouterModule,
-    ThemeSwitcherComponent,
-    AsyncPipe,
-    NgClass,
-  ],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'drevo-navbar',
+    standalone: true,
+    imports: [
+        ...MATERIAL_IMPORTS,
+        RouterModule,
+        ThemeSwitcherComponent,
+        AsyncPipe,
+        NgClass,
+        NavbarMenuContentComponent,
+    ],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  public readonly theme$ = this.themeService.currentTheme$.pipe(
-    map((theme) => (theme === Theme.light ? Theme.green : ''))
-  );
+    @Output() public readonly toggleLeftSidebar = new EventEmitter<void>();
+    @Output() public readonly toggleRightSidebar = new EventEmitter<void>();
 
-  constructor(private readonly themeService: ThemeService) {}
+    public readonly isMobile$ = this.layoutService.isMobile$;
+    public readonly theme$ = this.themeService.currentTheme$.pipe(
+        map(theme => (theme === Theme.light ? Theme.green : ''))
+    );
+
+    constructor(
+        private readonly themeService: ThemeService,
+        private readonly layoutService: LayoutService
+    ) {}
 }
