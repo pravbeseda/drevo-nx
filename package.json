@@ -8,9 +8,10 @@
     "build:ci": "nx build drevo --base-href https://pravbeseda.github.io/drevo-nx/ && cp dist/drevo/browser/index.html dist/drevo/browser/404.html",
     "test": "nx test",
     "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
-    "coverage": "nx test --code-coverage",
-    "coverage:ci": "nx test --code-coverage && cp -R coverage/drevo dist/drevo/browser/coverage",
-    "lint": "nx lint"
+    "lint": "nx lint",
+    "test:coverage": "nx test --code-coverage",
+    "test:badges": "nx test:coverage  && jest-coverage-badges",
+    "test:coverage:ci": "nx test:badges && cp -R coverage/lcov-report dist/drevo/browser/coverage"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "@ngneat/until-destroy": "^10.0.0",
     "@nx/angular": "17.1.3",
     "express": "~4.18.2",
+    "jest-coverage-badges": "^1.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"
