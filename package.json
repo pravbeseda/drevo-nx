@@ -11,7 +11,7 @@
     "lint": "nx lint",
     "test:coverage": "nx test --code-coverage",
     "test:badges": "nx test:coverage  && jest-coverage-badges",
-    "test:coverage:ci": "nx test:badges && cp -R coverage/lcov-report dist/drevo/browser/coverage"
+    "test:coverage:ci": "nx test:badges && cp -R coverage dist/drevo/browser/coverage"
   },
   "private": true,
   "dependencies": {
