@@ -9,7 +9,7 @@
     "test": "nx test",
     "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
     "coverage": "nx test --code-coverage",
-    "coverage:ci": "nx test --code-coverage && cp -R coverage/drevo dist/drevo/coverage",
+    "coverage:ci": "nx test --code-coverage && cp -R coverage/drevo dist/drevo/browser/coverage",
     "lint": "nx lint"
   },
   "private": true,
