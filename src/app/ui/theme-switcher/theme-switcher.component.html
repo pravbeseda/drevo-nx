@@ -1,11 +1,11 @@
 <mat-menu #menu="matMenu">
     @for (theme of themes; track theme.value) {
-    <button
-        [attr.data-qa-theme]="theme.value"
-        mat-menu-item
-        (click)="setTheme(theme)">
-        {{ theme.name }}
-    </button>
+        <button
+            [attr.data-qa-theme]="theme.value"
+            mat-menu-item
+            (click)="setTheme(theme)">
+            {{ theme.name }}
+        </button>
     }
 </mat-menu>
 
