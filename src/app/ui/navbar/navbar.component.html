@@ -1,30 +1,31 @@
 @if ({ isMobile: isMobile$ | async }; as async) {
-<mat-toolbar
-    id="navbar"
-    [ngClass]="theme$ | async">
-    <button
-        mat-icon-button
-        class="menu-icon"
-        (click)="toggleLeftSidebar.emit()">
-        <mat-icon class="material-symbols-outlined">menu</mat-icon>
-    </button>
-    <span class="mr-3">Древо</span>
+    <mat-toolbar
+        id="navbar"
+        [ngClass]="theme$ | async">
+        <button
+            mat-icon-button
+            class="menu-icon"
+            (click)="toggleLeftSidebar.emit()">
+            <mat-icon class="material-symbols-outlined">menu</mat-icon>
+        </button>
+        <span class="mr-3">Древо</span>
 
-    @if(!async.isMobile) {
-    <div class="nav-menu">
-        <drevo-navbar-menu-content></drevo-navbar-menu-content>
-    </div>
-    }
+        @if (!async.isMobile) {
+            <div class="nav-menu">
+                <drevo-navbar-menu-content></drevo-navbar-menu-content>
+            </div>
+        }
 
-    <span class="spacer"></span>
+        <span class="spacer"></span>
 
-    <drevo-theme-switcher></drevo-theme-switcher>
+        <drevo-theme-switcher></drevo-theme-switcher>
 
-    <button
-        mat-icon-button
-        class="menu-icon"
-        (click)="toggleRightSidebar.emit()">
-        <mat-icon class="material-symbols-outlined">dock_to_left</mat-icon>
-    </button>
-</mat-toolbar>
+        <button
+            mat-icon-button
+            class="menu-icon"
+            matTooltip="Правая колонка"
+            (click)="toggleRightSidebar.emit()">
+            <mat-icon class="material-symbols-outlined">dock_to_left</mat-icon>
+        </button>
+    </mat-toolbar>
 }

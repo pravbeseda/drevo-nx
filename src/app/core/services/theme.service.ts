@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
@@ -15,7 +15,9 @@ export enum Theme {
 })
 export class ThemeService {
     private currentThemeSubject = new BehaviorSubject<Theme>(Theme.light);
-    public currentTheme$ = this.currentThemeSubject.asObservable();
+    public currentTheme$ = this.currentThemeSubject
+        .asObservable()
+        .pipe(tap(theme => this.setOverlayContainerTheme(theme)));
 
     constructor(
         private readonly overlayContainer: OverlayContainer,
@@ -33,7 +35,6 @@ export class ThemeService {
 
     public setTheme(theme: Theme): void {
         this.currentThemeSubject.next(theme);
-        this.setOverlayContainerTheme(theme);
     }
 
     private setOverlayContainerTheme(theme: Theme): void {

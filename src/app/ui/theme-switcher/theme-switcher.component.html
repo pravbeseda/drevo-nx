@@ -1,8 +1,8 @@
 <mat-menu #menu="matMenu">
     @for (theme of themes; track theme.value) {
         <button
-            [attr.data-qa-theme]="theme.value"
             mat-menu-item
+            [attr.data-qa-theme]="theme.value"
             (click)="setTheme(theme)">
             {{ theme.name }}
         </button>
@@ -12,6 +12,7 @@
 <button
     id="theme-menu-button"
     mat-icon-button
+    matTooltip="Сменить тему"
     [matMenuTriggerFor]="menu">
     <mat-icon class="material-symbols-outlined">format_color_fill</mat-icon>
 </button>

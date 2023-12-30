@@ -3,7 +3,10 @@
     [class]="theme$ | async"
     class="mat-app-background hw-100">
     @if (
-        { isMobile: isMobile$ | async, isLargeScreen: isLargeScreen$ | async };
+        {
+            isMobile: isMobile$ | async,
+            isLargeScreen: isLargeScreen$ | async
+        };
         as async
     ) {
         <div
@@ -38,7 +41,9 @@
                 </mat-sidenav>
 
                 <mat-sidenav-content>
-                    <ng-content></ng-content>
+                    <div class="content">
+                        <ng-content></ng-content>
+                    </div>
                 </mat-sidenav-content>
             </mat-sidenav-container>
         </div>
