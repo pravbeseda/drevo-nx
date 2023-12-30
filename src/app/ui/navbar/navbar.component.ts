@@ -14,6 +14,7 @@ import { map } from 'rxjs';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { NavbarMenuContentComponent } from '../navbar-menu-content/navbar-menu-content.component';
 import { LayoutService } from '../../core/services/layout.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
 
@@ -27,6 +28,7 @@ const MATERIAL_IMPORTS = [MatButtonModule, MatIconModule, MatToolbarModule];
         AsyncPipe,
         NgClass,
         NavbarMenuContentComponent,
+        MatTooltipModule,
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
