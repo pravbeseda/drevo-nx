@@ -49,14 +49,6 @@ describe('ThemeService', () => {
     THEMES.forEach(theme => {
         describe(`when theme is ${theme}`, () => {
             it('should set theme', () => {
-                const currentThemeSpy = jest.fn();
-                spectator.service.currentTheme$.subscribe(currentThemeSpy);
-
-                spectator.service.setTheme(theme);
-                expect(currentThemeSpy).toHaveBeenCalledWith(theme);
-            });
-
-            it('should set overlay container theme', () => {
                 const overlayContainerClasses = new Set(
                     THEMES.filter(t => t !== theme)
                 );
@@ -64,7 +56,11 @@ describe('ThemeService', () => {
                     .getContainerElement()
                     .classList.add(...overlayContainerClasses);
 
+                const currentThemeSpy = jest.fn();
+                spectator.service.currentTheme$.subscribe(currentThemeSpy);
+
                 spectator.service.setTheme(theme);
+                expect(currentThemeSpy).toHaveBeenCalledWith(theme);
 
                 THEMES.forEach(checkedTheme => {
                     expect(
