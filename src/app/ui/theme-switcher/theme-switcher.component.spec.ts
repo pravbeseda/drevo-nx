@@ -45,7 +45,7 @@ describe('ThemeSwitcherComponent', () => {
             expect(menuTrigger.menuOpen).toBe(true);
             expect(getThemeMenu()).toBeTruthy();
 
-            const themeServiceSpy = jest.spyOn(themeService, 'setTheme');
+            const themeServiceSpy = jest.spyOn(themeService, 'changeTheme');
             chooseTheme(theme);
             expect(themeServiceSpy).toHaveBeenCalledWith(theme);
         });

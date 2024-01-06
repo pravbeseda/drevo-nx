@@ -27,6 +27,6 @@ export class ThemeSwitcherComponent {
     constructor(private readonly themeService: ThemeService) {}
 
     public setTheme(theme: ThemeItem): void {
-        this.themeService.setTheme(theme.value);
+        this.themeService.changeTheme(theme.value);
     }
 }
