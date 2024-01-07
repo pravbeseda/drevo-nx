@@ -22,8 +22,6 @@ $theme: mat.define-light-theme(
     )
 );
 
-.light-mode {
-    @include mat.all-component-themes($theme);
-}
+@include mat.all-component-themes($theme);
 
 // @debug logger.pretty-map($theme);
