@@ -9,8 +9,8 @@ export const appRoutes: Route[] = [
     {
         path: 'articles',
         loadComponent: () =>
-            import('./pages/articles/articles.component').then(
-                m => m.ArticlesComponent
+            import('./pages/article/article.component').then(
+                m => m.ArticleComponent
             ),
     },
     {
