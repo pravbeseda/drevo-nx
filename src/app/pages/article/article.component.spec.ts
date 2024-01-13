@@ -4,12 +4,12 @@ import {
     mockProvider,
 } from '@ngneat/spectator/jest';
 
-import { HomeComponent } from './home.component';
+import { ArticleComponent } from './article.component';
 import { ActivatedRoute } from '@angular/router';
 
-describe('HomeComponent', () => {
-    let spectator: Spectator<HomeComponent>;
-    const createComponent = createComponentFactory(HomeComponent);
+describe('ArticleComponent', () => {
+    let spectator: Spectator<ArticleComponent>;
+    const createComponent = createComponentFactory(ArticleComponent);
 
     it('should create', () => {
         spectator = createComponent({

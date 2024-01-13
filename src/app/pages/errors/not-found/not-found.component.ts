@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'drevo-articles',
+  selector: 'drevo-not-found',
   standalone: true,
   imports: [],
-  templateUrl: './articles.component.html',
-  styleUrl: './articles.component.scss',
+  templateUrl: './not-found.component.html',
+  styleUrl: './not-found.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticlesComponent {
+export class NotFoundComponent {
 
 }

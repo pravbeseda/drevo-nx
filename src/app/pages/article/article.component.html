@@ -1,0 +1,5 @@
+@if (article$ | async; as article) {
+    <h1 *ngIf="showTitle">{{ article?.title }}</h1>
+
+    <div [innerHtml]="article?.body"></div>
+}
