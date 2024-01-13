@@ -9,7 +9,7 @@
     "test": "nx test",
     "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
     "lint": "nx lint",
-    "test:coverage": "nx test --code-coverage",
+    "test:coverage": "nx reset && nx test --code-coverage",
     "test:badges": "nx test:coverage  && jest-coverage-badges",
     "test:coverage:ci": "nx test:badges && cp -R coverage dist/drevo/browser/coverage"
   },

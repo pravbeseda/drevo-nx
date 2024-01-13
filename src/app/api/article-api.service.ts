@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class ArticleApiService {
     constructor(private readonly fakeArticleService: FakeArticleService) {}
 
-    getArticle(id: number): Observable<Article> {
+    public getArticle(id: number): Observable<Article> {
         return this.fakeArticleService.getArticle(id);
     }
 }

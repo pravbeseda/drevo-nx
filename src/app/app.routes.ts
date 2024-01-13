@@ -8,10 +8,8 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'articles',
-        loadComponent: () =>
-            import('./pages/article/article.component').then(
-                m => m.ArticleComponent
-            ),
+        loadChildren: () =>
+            import('./pages/article/article.routes').then(m => m.articleRoutes),
     },
     {
         path: 'news',
@@ -22,5 +20,12 @@ export const appRoutes: Route[] = [
         path: 'forum',
         loadComponent: () =>
             import('./pages/forum/forum.component').then(m => m.ForumComponent),
+    },
+    {
+        path: '**',
+        loadComponent: () =>
+            import('./pages/errors/not-found/not-found.component').then(
+                m => m.NotFoundComponent
+            ),
     },
 ];

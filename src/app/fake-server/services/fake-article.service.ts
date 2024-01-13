@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { loremIpsum } from 'lorem-ipsum';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class FakeArticleService {
-    constructor() {}
+    public getArticle(id: number): Observable<Article> {
+        if (id > 200) {
+            return this.getNotFound();
+        }
 
-    getArticle(id: number): Observable<Article> {
         return of({
             id,
             version: 1,
@@ -16,5 +20,15 @@ export class FakeArticleService {
                 .map(paragraph => `<p>${paragraph}</p>`)
                 .join(''),
         });
+    }
+
+    private getNotFound(): Observable<any> {
+        const errorMessage = 'Not Found';
+        return throwError(() => ({ status: 404, error: errorMessage }));
+    }
+
+    public getServerError(): Observable<any> {
+        const errorMessage = 'Internal Server Error';
+        return throwError(() => ({ status: 500, error: errorMessage }));
     }
 }

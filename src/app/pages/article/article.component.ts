@@ -4,13 +4,12 @@ import { ArticleService } from './services/article.service';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ArticleApiService } from '../../api/article-api.service';
-import { FakeArticleService } from '../../fake-server/services/fake-article.service';
 
 @Component({
     selector: 'drevo-article',
     standalone: true,
     imports: [AsyncPipe, NgIf],
-    providers: [ArticleService, ArticleApiService, FakeArticleService],
+    providers: [ArticleService, ArticleApiService],
     templateUrl: './article.component.html',
     styleUrl: './article.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
