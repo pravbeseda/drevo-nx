@@ -1,0 +1,17 @@
+<mat-tab-group
+    #tabGroup
+    animationDuration="0ms"
+    [selectedIndex]="selectedTabIndex$ | async"
+    (selectedIndexChange)="tabChanged($event)">
+    @if ({ content: content$ | async }; as async) {
+        <mat-tab
+            id="content-tab"
+            *ngIf="async.content"
+            label="Содержание">
+            Содержание
+        </mat-tab>
+    }
+    <mat-tab label="Закладки">Закладки</mat-tab>
+</mat-tab-group>
+
+<a mat-list-item>Пункт правого меню</a>

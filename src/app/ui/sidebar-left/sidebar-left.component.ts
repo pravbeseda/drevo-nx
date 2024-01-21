@@ -6,14 +6,14 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 import { NavbarMenuContentComponent } from '../navbar-menu-content/navbar-menu-content.component';
 
 @Component({
-    selector: 'drevo-sidebar-left-content',
+    selector: 'drevo-sidebar-left',
     standalone: true,
     imports: [MatListModule, RouterLink, AsyncPipe, NavbarMenuContentComponent],
-    templateUrl: './sidebar-left-content.component.html',
-    styleUrl: './sidebar-left-content.component.scss',
+    templateUrl: './sidebar-left.component.html',
+    styleUrl: './sidebar-left.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarLeftContentComponent {
+export class SidebarLeftComponent {
     public readonly isMobile$ = this.layoutService.isMobile$;
 
     constructor(private readonly layoutService: LayoutService) {}

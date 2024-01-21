@@ -4,14 +4,12 @@ import {
     mockProvider,
 } from '@ngneat/spectator/jest';
 
-import { SidebarRightContentComponent } from './sidebar-right-content.component';
+import { SidebarLeftComponent } from './sidebar-left.component';
 import { ActivatedRoute } from '@angular/router';
 
-describe('SidebarRightContentComponent', () => {
-    let spectator: Spectator<SidebarRightContentComponent>;
-    const createComponent = createComponentFactory(
-        SidebarRightContentComponent
-    );
+describe('SidebarLeftContentComponent', () => {
+    let spectator: Spectator<SidebarLeftComponent>;
+    const createComponent = createComponentFactory(SidebarLeftComponent);
 
     it('should create', () => {
         spectator = createComponent({
