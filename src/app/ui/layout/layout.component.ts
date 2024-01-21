@@ -7,8 +7,8 @@ import { LayoutService, ScreenSize } from '../../core/services/layout.service';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
-import { SidebarLeftContentComponent } from '../sidebar-left-content/sidebar-left-content.component';
-import { SidebarRightContentComponent } from '../sidebar-right-content/sidebar-right-content.component';
+import { SidebarLeftComponent } from '../sidebar-left/sidebar-left.component';
+import { SidebarRightComponent } from '../sidebar-right/sidebar-right.component';
 import { map } from 'rxjs';
 
 const MATERIAL_IMPORTS = [MatButtonModule];
@@ -23,8 +23,8 @@ const MATERIAL_IMPORTS = [MatButtonModule];
         MatListModule,
         MatSidenavModule,
         RouterLink,
-        SidebarLeftContentComponent,
-        SidebarRightContentComponent,
+        SidebarLeftComponent,
+        SidebarRightComponent,
     ],
     providers: [ThemeService],
     templateUrl: './layout.component.html',

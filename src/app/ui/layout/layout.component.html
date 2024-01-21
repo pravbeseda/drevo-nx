@@ -22,21 +22,25 @@
                 [hasBackdrop]="async.isMobile">
                 <mat-sidenav
                     #leftSidenav
+                    class="sidebar"
                     [opened]="async.isLargeScreen"
                     [mode]="async.isMobile ? 'over' : 'side'"
                     [fixedInViewport]="async.isMobile">
                     <mat-nav-list>
-                        <drevo-sidebar-left-content></drevo-sidebar-left-content>
+                        <drevo-sidebar-left></drevo-sidebar-left>
                     </mat-nav-list>
                 </mat-sidenav>
 
                 <mat-sidenav
                     #rightSidenav
+                    class="sidebar"
                     [opened]="async.isLargeScreen"
+                    [mode]="async.isMobile ? 'over' : 'side'"
+                    [fixedInViewport]="async.isMobile"
                     mode="side"
                     position="end">
                     <mat-nav-list>
-                        <drevo-sidebar-right-content></drevo-sidebar-right-content>
+                        <drevo-sidebar-right></drevo-sidebar-right>
                     </mat-nav-list>
                 </mat-sidenav>
 

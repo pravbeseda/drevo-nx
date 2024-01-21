@@ -1,7 +1,7 @@
 // https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use '../../node_modules/@angular/material/index' as mat;
 @use 'sass:map';
-@use '@fireflysemantics/sass-logger' as logger;
+@use '../../node_modules/@fireflysemantics/sass-logger/index' as logger;
 
 @include mat.core();
 
@@ -14,39 +14,39 @@ $theme-warn: mat.define-palette(mat.$red-palette);
 $bg-color: #00796b;
 
 $green-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: $theme-primary,
-      accent: $theme-accent,
-      warn: $theme-warn,
-    ),
-    typography: mat.define-typography-config(),
-  )
+    (
+        color: (
+            primary: $theme-primary,
+            accent: $theme-accent,
+            warn: $theme-warn,
+        ),
+        typography: mat.define-typography-config(),
+    )
 );
 
 $background: map-get(map-get($green-theme, color), background);
 $background: map_merge(
-  $background,
-  (
-    app-bar: $bg-color,
-    status-bar: $bg-color,
-  )
+    $background,
+    (
+        app-bar: $bg-color,
+        status-bar: $bg-color,
+    )
 );
 $color-of-theme: map_merge(
-  map-get($green-theme, color),
-  (
-    background: $background,
-  )
+    map-get($green-theme, color),
+    (
+        background: $background,
+    )
 );
 $green-theme: map_merge(
-  $green-theme,
-  (
-    color: $color-of-theme,
-  )
+    $green-theme,
+    (
+        color: $color-of-theme,
+    )
 );
 
 .green-mode {
-  @include mat.all-component-colors($green-theme);
+    @include mat.all-component-colors($green-theme);
 }
 
 // @debug logger.pretty-map($green-theme);
