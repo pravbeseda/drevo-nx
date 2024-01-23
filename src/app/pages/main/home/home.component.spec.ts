@@ -6,6 +6,7 @@ import {
 
 import { HomeComponent } from './home.component';
 import { ActivatedRoute } from '@angular/router';
+import { NEVER } from 'rxjs';
 
 describe('HomeComponent', () => {
     let spectator: Spectator<HomeComponent>;
@@ -15,6 +16,7 @@ describe('HomeComponent', () => {
         spectator = createComponent({
             providers: [
                 mockProvider(ActivatedRoute, {
+                    paramMap: NEVER,
                     snapshot: {
                         paramMap: {
                             get: () => '1',
