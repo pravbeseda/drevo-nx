@@ -1,0 +1,7 @@
+@for (bookmark of bookmarks$ | async; track bookmark.id) {
+    <a
+        mat-list-item
+        [routerLink]="bookmark.path">
+        {{ bookmark.title }}
+    </a>
+}

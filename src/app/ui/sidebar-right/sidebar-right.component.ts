@@ -12,12 +12,20 @@ import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { assertIsDefined } from '@shared/routines/utils';
 import { BehaviorSubject, filter } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
 
 @UntilDestroy()
 @Component({
     selector: 'drevo-sidebar-right',
     standalone: true,
-    imports: [MatListModule, RouterLink, AsyncPipe, MatTabsModule, NgIf],
+    imports: [
+        MatListModule,
+        RouterLink,
+        AsyncPipe,
+        MatTabsModule,
+        NgIf,
+        BookmarksComponent,
+    ],
     templateUrl: './sidebar-right.component.html',
     styleUrl: './sidebar-right.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
