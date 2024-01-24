@@ -1,1 +1,0 @@
-import"./chunk-55KE2TB7.js";var o=[{path:"",loadComponent:()=>import("./chunk-IL4FINWX.js").then(t=>t.ArticleComponent)},{path:":articleId",loadComponent:()=>import("./chunk-IL4FINWX.js").then(t=>t.ArticleComponent)}];export{o as articleRoutes};
