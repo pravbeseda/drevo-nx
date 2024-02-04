@@ -8,6 +8,9 @@ export const articleRoutes: Route[] = [
     },
     {
         path: ':articleId',
+        data: {
+            showContent: true,
+        },
         loadComponent: () =>
             import('./article.component').then(m => m.ArticleComponent),
     },

@@ -1,7 +1,7 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { SidebarRightService } from './sidebar-right.service';
 import { mockProvider } from '@ngneat/spectator/jest';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 
 describe('SidebarRightService', () => {
@@ -24,13 +24,14 @@ describe('SidebarRightService', () => {
         expect(spectator.service).toBeTruthy();
     });
 
-    it('should reset content on navigation end', () => {
+    it('should reset content on navigation start', () => {
         const setContentSpy = jest.fn();
         spectator.service.content$.subscribe(setContentSpy);
-        spectator.service.setContent([]);
-        expect(setContentSpy).toHaveBeenLastCalledWith([]);
+        const content = [{ id: 1, title: 'test', anchor: 'test' }];
+        spectator.service.setContent(content);
+        expect(setContentSpy).toHaveBeenLastCalledWith(content);
 
-        events.next(new NavigationEnd(0, '', ''));
+        events.next(new NavigationStart(0, ''));
         expect(setContentSpy).toHaveBeenLastCalledWith(null);
     });
 });

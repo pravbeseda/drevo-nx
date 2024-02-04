@@ -3,12 +3,15 @@
     animationDuration="0ms"
     [selectedIndex]="selectedTabIndex$ | async"
     (selectedIndexChange)="tabChanged($event)">
-    @if ({ content: content$ | async }; as async) {
+    @if (content$ | async; as content) {
         <mat-tab
             id="content-tab"
-            *ngIf="async.content"
             label="Содержание">
-            Содержание
+            <div class="p4">
+                <drevo-article-content
+                    *ngFor="let contentItem of content"
+                    [content]="contentItem"></drevo-article-content>
+            </div>
         </mat-tab>
     }
     <mat-tab label="Закладки">
