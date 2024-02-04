@@ -49,27 +49,49 @@ export class ArticleComponent {
         filter(([id, routeId]) => !!id || !!routeId),
         map(([id, routeId]) => Number(routeId ?? id)),
         switchMap(id => this.articleService.getArticle(id)),
-        tap(this.setContent)
+        tap(id => this.setContent(id))
     );
 
     constructor(
         private readonly articleService: ArticleService,
         private readonly route: ActivatedRoute,
         private readonly sidebarRightService: SidebarRightService
-    ) {
-        const articleId = this.route.snapshot.paramMap.get('articleId');
-        if (!!articleId) {
-            this.articleIdSubject.next(Number(articleId));
-        }
-    }
+    ) {}
 
     public setContent(article: Article): void {
-        if (this.showContent) {
+        if (this.route?.snapshot.data['showContent'] || this.showContent) {
             this.sidebarRightService.setContent([
                 {
-                    title: article.title,
-                    level: 1,
-                    anchor: 'x',
+                    title: 'Начало статьи',
+                    anchor: '0',
+                    subtitles: [
+                        {
+                            subtitles: [
+                                { title: 'Subpart 1', anchor: '1' },
+                                { title: 'Subpart 2', anchor: '2' },
+                            ],
+                        },
+                        {
+                            title: 'Part 2',
+                            anchor: '3',
+                        },
+                        {
+                            title: 'Part 3',
+                            anchor: '4',
+                        },
+                    ],
+                },
+                {
+                    title: 'Part 4',
+                    anchor: '6',
+                    subtitles: [
+                        { title: 'Subpart 1', anchor: '1' },
+                        { title: 'Subpart 2', anchor: '2' },
+                    ],
+                },
+                {
+                    title: 'Part 5',
+                    anchor: '7',
                 },
             ]);
         }

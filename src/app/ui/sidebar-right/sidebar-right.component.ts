@@ -7,12 +7,13 @@ import {
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { SidebarRightService } from './services/sidebar-right.service';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { assertIsDefined } from '@shared/routines/utils';
-import { BehaviorSubject, filter } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
+import { ArticleContentComponent } from '../article-content/article-content.component';
 
 @UntilDestroy()
 @Component({
@@ -25,6 +26,8 @@ import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
         MatTabsModule,
         NgIf,
         BookmarksComponent,
+        ArticleContentComponent,
+        NgForOf,
     ],
     templateUrl: './sidebar-right.component.html',
     styleUrl: './sidebar-right.component.scss',
@@ -45,18 +48,13 @@ export class SidebarRightComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         assertIsDefined(this.tabGroup, 'SidebarRightComponent tabGroup');
-        this.content$
-            .pipe(
-                untilDestroyed(this),
-                filter(content => !!content)
-            )
-            .subscribe(_ => {
-                setTimeout(() => {
-                    // Seems weird, but they both needs to make first tab active in all cases
-                    this.tabGroup!.selectedIndex = 0;
-                    this.selectedTabIndexSubject.next(0);
-                }, 0);
-            });
+        this.content$.pipe(untilDestroyed(this)).subscribe(content => {
+            setTimeout(() => {
+                // Seems weird, but they both needs to make first tab active in all cases
+                this.tabGroup!.selectedIndex = 0;
+                this.selectedTabIndexSubject.next(0);
+            }, 0);
+        });
     }
 
     public tabChanged(tabIndex: number): void {

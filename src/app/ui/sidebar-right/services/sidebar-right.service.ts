@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, filter } from 'rxjs';
 
 @Injectable({
@@ -13,13 +13,13 @@ export class SidebarRightService {
 
     constructor(private readonly route: Router) {
         this.route.events
-            .pipe(filter(event => event instanceof NavigationEnd))
+            .pipe(filter(event => event instanceof NavigationStart))
             .subscribe(() => {
                 this.contentSubject.next(null);
             });
     }
 
-    public setContent(newContent: Content[]) {
+    public setContent(newContent: Content[] | null): void {
         this.contentSubject.next(newContent);
     }
 }

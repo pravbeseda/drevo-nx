@@ -12,11 +12,11 @@ import { fakeAsync } from '@angular/core/testing';
 
 describe('SidebarRightContentComponent', () => {
     let spectator: Spectator<SidebarRightComponent>;
-    let content$: Subject<Content[] | null>;
+    let content$: Subject<Content | null>;
     const createComponent = createComponentFactory(SidebarRightComponent);
 
     beforeEach(() => {
-        content$ = new Subject<Content[] | null>();
+        content$ = new Subject<Content | null>();
         spectator = createComponent({
             providers: [
                 mockProvider(ActivatedRoute),
@@ -38,7 +38,7 @@ describe('SidebarRightContentComponent', () => {
 
         spectator.component.selectedTabIndex$.subscribe(selectedTabIndexSpy);
         expect(spectator.queryAll('.mdc-tab')).toHaveLength(1);
-        content$.next([{ title: 'test', anchor: 'test', level: 1 }]);
+        content$.next({ title: 'test', anchor: 'test' });
         spectator.tick();
         expect(selectedTabIndexSpy).toHaveBeenLastCalledWith(0);
 
