@@ -1,0 +1,1 @@
+import"./chunk-55KE2TB7.js";var e=t=>!isNaN(Number(t.paramMap.get("articleId"))),o=[{path:"",loadComponent:()=>import("./chunk-DXVPZSHP.js").then(t=>t.ArticleComponent)},{path:":articleId",data:{showContent:!0},canActivate:[e],loadComponent:()=>import("./chunk-DXVPZSHP.js").then(t=>t.ArticleComponent)}];export{o as articleRoutes};
