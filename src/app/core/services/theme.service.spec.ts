@@ -1,11 +1,7 @@
-import {
-    createServiceFactory,
-    mockProvider,
-    SpectatorService,
-} from '@ngneat/spectator/jest';
-import { Theme, ThemeService } from './theme.service';
+import { createServiceFactory, mockProvider, SpectatorService } from '@ngneat/spectator/jest';
+import { ThemeService } from './theme.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { THEMES } from '../../shared/consts/themes';
+import { THEMES } from '@shared/consts/themes';
 import { BehaviorSubject } from 'rxjs';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
@@ -49,12 +45,8 @@ describe('ThemeService', () => {
     THEMES.forEach(theme => {
         describe(`when theme is ${theme}`, () => {
             it('should set theme', () => {
-                const overlayContainerClasses = new Set(
-                    THEMES.filter(t => t !== theme)
-                );
-                overlayContainer
-                    .getContainerElement()
-                    .classList.add(...overlayContainerClasses);
+                const overlayContainerClasses = new Set(THEMES.filter(t => t !== theme));
+                overlayContainer.getContainerElement().classList.add(...overlayContainerClasses);
 
                 const currentThemeSpy = jest.fn();
                 spectator.service.currentTheme$.subscribe(currentThemeSpy);
@@ -64,9 +56,7 @@ describe('ThemeService', () => {
 
                 THEMES.forEach(checkedTheme => {
                     expect(
-                        overlayContainer
-                            .getContainerElement()
-                            .classList.contains(checkedTheme)
+                        overlayContainer.getContainerElement().classList.contains(checkedTheme)
                     ).toBe(checkedTheme === theme);
                 });
             });

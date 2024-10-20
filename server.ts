@@ -51,6 +51,7 @@ export function app(): express.Express {
     return server;
 }
 
+// @ts-ignore
 function run(): void {
     const port = process.env['PORT'] || 4000;
 

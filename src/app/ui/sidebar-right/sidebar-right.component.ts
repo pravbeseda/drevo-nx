@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
 import { ArticleContentComponent } from '../article-content/article-content.component';
+import { NavigationService } from '../../core/services/navigation.service';
 
 @UntilDestroy()
 @Component({
@@ -38,19 +39,22 @@ export class SidebarRightComponent implements AfterViewInit {
 
     public readonly content$ = this.sidebarRightService.content$;
 
-    private readonly selectedTabIndexSubject = new BehaviorSubject<
-        number | undefined
-    >(undefined);
-    public readonly selectedTabIndex$ =
-        this.selectedTabIndexSubject.asObservable();
+    private readonly selectedTabIndexSubject = new BehaviorSubject<number | undefined>(
+        undefined
+    );
+    public readonly selectedTabIndex$ = this.selectedTabIndexSubject.asObservable();
 
-    constructor(private readonly sidebarRightService: SidebarRightService) {}
+    constructor(
+        private readonly sidebarRightService: SidebarRightService,
+        private readonly navigationService: NavigationService
+    ) {}
 
     ngAfterViewInit(): void {
         assertIsDefined(this.tabGroup, 'SidebarRightComponent tabGroup');
-        this.content$.pipe(untilDestroyed(this)).subscribe(content => {
+        this.content$.pipe(untilDestroyed(this)).subscribe(() => {
             setTimeout(() => {
                 // Seems weird, but they both needs to make first tab active in all cases
+                // Todo: correct this
                 this.tabGroup!.selectedIndex = 0;
                 this.selectedTabIndexSubject.next(0);
             }, 0);
@@ -59,5 +63,9 @@ export class SidebarRightComponent implements AfterViewInit {
 
     public tabChanged(tabIndex: number): void {
         this.selectedTabIndexSubject.next(tabIndex);
+    }
+
+    public scrollTo(anchor: string): void {
+        this.navigationService.scrollTo(anchor);
     }
 }

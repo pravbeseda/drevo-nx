@@ -1,8 +1,4 @@
-import {
-    Spectator,
-    createComponentFactory,
-    mockProvider,
-} from '@ngneat/spectator/jest';
+import { Spectator, createComponentFactory, mockProvider } from '@ngneat/spectator/jest';
 
 import { SidebarRightComponent } from './sidebar-right.component';
 import { ActivatedRoute } from '@angular/router';
@@ -44,9 +40,7 @@ describe('SidebarRightContentComponent', () => {
 
         expect(spectator.queryAll('.mdc-tab')).toHaveLength(2);
 
-        expect(spectator.query('#content-tab')).toHaveLength(1);
-
-        console.log(spectator.element.outerHTML);
+        expect(spectator.query('[data-qa-selector=content-tab]')).toHaveLength(1);
 
         // expect(tabGroup.selectedIndex).toBe(0);
     }));

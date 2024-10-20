@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+} from '@angular/core';
 import { NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'drevo-article-content',
     standalone: true,
-    imports: [NgIf, RouterLink],
+    imports: [NgIf],
     templateUrl: './article-content.component.html',
     styleUrl: './article-content.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,4 +18,7 @@ import { RouterLink } from '@angular/router';
 export class ArticleContentComponent {
     @Input()
     public content: Content | undefined;
+
+    @Output()
+    public readonly scrollEvent = new EventEmitter<string>();
 }

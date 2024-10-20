@@ -32,19 +32,34 @@ export class FakeArticleService {
     }
 
     private generateArticles(count: number): Article[] {
-        return [...Array(count)].map((_, id) => ({
-            id: id + 1,
+        return [...Array(count)].map((_, index) => ({
+            id: index + 1,
             version: 1,
             title: loremIpsum({
                 count: Math.floor(Math.random() * 6) + 1,
                 format: 'plain',
                 units: 'words',
             }).toUpperCase(),
-            body: loremIpsum({
-                count: 20,
-                format: 'html',
-                units: 'paragraphs',
-            }),
+            body: this.generateTextWithTitles(8),
         }));
+    }
+
+    private generateTextWithTitles(count: number): string {
+        return [...Array(count)]
+            .map((_, index) => {
+                const title = loremIpsum({
+                    count: Math.floor(Math.random() * 6) + 1,
+                    format: 'plain',
+                    units: 'words',
+                }).toUpperCase();
+                const body = loremIpsum({
+                    count: 3,
+                    format: 'html',
+                    units: 'paragraphs',
+                });
+
+                return `<h2 id="${index + 1}">${title}</h2>${body}`;
+            })
+            .join('');
     }
 }

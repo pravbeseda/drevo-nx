@@ -1,14 +1,15 @@
 @if (content) {
     <a
-        class="content-item hover-lined"
-        href="./#link">
+        class="cursor-pointer content-item hover-lined"
+        (click)="scrollEvent.emit(content.anchor)">
         {{ content.title }}
     </a>
     <ul *ngIf="!!content?.subtitles?.length">
         @for (subtitle of content.subtitles; track $index) {
             <li>
                 <drevo-article-content
-                    [content]="subtitle"></drevo-article-content>
+                    [content]="subtitle"
+                    (scrollEvent)="scrollEvent.emit($event)"></drevo-article-content>
             </li>
         }
     </ul>

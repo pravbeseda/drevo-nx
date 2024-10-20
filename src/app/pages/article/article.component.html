@@ -1,5 +1,10 @@
-@if (article$ | async; as article) {
-    <h1 *ngIf="showTitle">{{ article?.title }}</h1>
+<div
+    drevoScrollSpy
+    class="article"
+    (sectionChanged)="onSectionChanged($event)">
+    @if (article$ | async; as article) {
+        <h1 *ngIf="showTitle">{{ article?.title }}</h1>
 
-    <div [innerHtml]="article?.body"></div>
-}
+        <div [innerHtml]="article?.body | safeHtml"></div>
+    }
+</div>

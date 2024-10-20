@@ -1,6 +1,5 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { FakeArticleService } from './fake-article.service';
-import { error } from '@angular/compiler-cli/src/transformers/util';
 
 describe('FakeArticleService', () => {
     let spectator: SpectatorService<FakeArticleService>;
