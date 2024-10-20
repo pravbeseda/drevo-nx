@@ -32,7 +32,6 @@ export class NavigationService {
         }
         this.router.navigate([], {
             fragment: anchor,
-            queryParams: { scrollEvent: true },
         });
     }
 }
