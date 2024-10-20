@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.65% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/23</span>
+                <span class='fraction'>24/26</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.45% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/22</span>
+                <span class='fraction'>23/25</span>
             </div>
         
             
@@ -126,12 +126,21 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -173,16 +182,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,6 +221,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
 import { ArticleContentComponent } from '../article-content/article-content.component';
+import { NavigationService } from '../../core/services/navigation.service';
 &nbsp;
 @UntilDestroy()
 @Component({
@@ -229,19 +246,22 @@ export class SidebarRightComponent implements AfterViewInit {
 &nbsp;
     public readonly content$ = this.sidebarRightService.content$;
 &nbsp;
-    private readonly selectedTabIndexSubject = new BehaviorSubject&lt;
-        number | undefined
-    &gt;(undefined);
-    public readonly selectedTabIndex$ =
-        this.selectedTabIndexSubject.asObservable();
+    private readonly selectedTabIndexSubject = new BehaviorSubject&lt;number | undefined&gt;(
+        undefined
+    );
+    public readonly selectedTabIndex$ = this.selectedTabIndexSubject.asObservable();
 &nbsp;
-    constructor(private readonly sidebarRightService: SidebarRightService) {}
+    constructor(
+        private readonly sidebarRightService: SidebarRightService,
+        private readonly navigationService: NavigationService
+    ) {}
 &nbsp;
     ngAfterViewInit(): void {
         assertIsDefined(this.tabGroup, 'SidebarRightComponent tabGroup');
-        this.content$.pipe(untilDestroyed(this)).subscribe(content =&gt; {
+        this.content$.pipe(untilDestroyed(this)).subscribe(() =&gt; {
             setTimeout(() =&gt; {
                 // Seems weird, but they both needs to make first tab active in all cases
+                // Todo: correct this
                 this.tabGroup!.selectedIndex = 0;
                 this.selectedTabIndexSubject.next(0);
             }, 0);
@@ -251,6 +271,10 @@ export class SidebarRightComponent implements AfterViewInit {
     public <span class="fstat-no" title="function not covered" >tabChanged(</span>tabIndex: number): void {
 <span class="cstat-no" title="statement not covered" >        this.selectedTabIndexSubject.next(tabIndex);</span>
     }
+&nbsp;
+    public <span class="fstat-no" title="function not covered" >scrollTo(</span>anchor: string): void {
+<span class="cstat-no" title="statement not covered" >        this.navigationService.scrollTo(anchor);</span>
+    }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -259,7 +283,7 @@ export class SidebarRightComponent implements AfterViewInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-20T02:48:31.952Z
+                at 2024-10-20T05:06:06.795Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
