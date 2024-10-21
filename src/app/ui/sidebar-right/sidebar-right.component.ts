@@ -1,9 +1,4 @@
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { SidebarRightService } from './services/sidebar-right.service';
@@ -39,9 +34,7 @@ export class SidebarRightComponent implements AfterViewInit {
 
     public readonly content$ = this.sidebarRightService.content$;
 
-    private readonly selectedTabIndexSubject = new BehaviorSubject<number | undefined>(
-        undefined
-    );
+    private readonly selectedTabIndexSubject = new BehaviorSubject<number | undefined>(undefined);
     public readonly selectedTabIndex$ = this.selectedTabIndexSubject.asObservable();
 
     constructor(

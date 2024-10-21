@@ -58,7 +58,9 @@ export class FakeArticleService {
                     units: 'paragraphs',
                 });
 
-                return `<h2 id="${index + 1}">${title}</h2>${body}`;
+                const id = index + 1;
+
+                return `<h2 id="${id}">${id}. ${title}</h2>${body}`;
             })
             .join('');
     }
