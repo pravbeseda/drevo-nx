@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ArticleApiService } from '../../../api/article-api.service';
 import { Observable } from 'rxjs';
+import { Article } from '@shared/models/article';
 
 @Injectable()
 export class ArticleService {

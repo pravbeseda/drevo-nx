@@ -11,7 +11,7 @@ li {
     padding: 0;
 }
 
-ul > li {
+ul:not(.first-level) > li {
     margin-left: nth($dist-list, 4);
 }
 

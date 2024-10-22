@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FakeArticleService } from '../fake-server/services/fake-article.service';
 import { Observable } from 'rxjs';
+import { Article } from '@shared/models/article';
 
 @Injectable({
     providedIn: 'root',

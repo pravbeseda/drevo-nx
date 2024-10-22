@@ -2,10 +2,12 @@
     <a
         class="cursor-pointer content-item hover-lined"
         [routerLink]="[]"
-        [fragment]="content.anchor">
-        {{ content.title }}
+        [fragment]="content.anchor || '0'">
+        {{ content.title || 'Top' }}
     </a>
-    <ul *ngIf="!!content?.subtitles?.length">
+    <ul
+        *ngIf="!!content?.subtitles?.length"
+        [ngClass]="{ 'first-level': !content.title }">
         @for (subtitle of content.subtitles; track $index) {
             <li>
                 <drevo-article-content [content]="subtitle"></drevo-article-content>

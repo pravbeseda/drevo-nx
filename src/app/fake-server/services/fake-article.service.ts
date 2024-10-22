@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { loremIpsum } from 'lorem-ipsum';
+import { Article } from '@shared/models/article';
+import { Content } from '@shared/models/content';
 
 @Injectable({
     providedIn: 'root',
@@ -32,26 +34,32 @@ export class FakeArticleService {
     }
 
     private generateArticles(count: number): Article[] {
-        return [...Array(count)].map((_, index) => ({
-            id: index + 1,
-            version: 1,
-            title: loremIpsum({
-                count: Math.floor(Math.random() * 6) + 1,
-                format: 'plain',
-                units: 'words',
-            }).toUpperCase(),
-            body: this.generateTextWithTitles(8),
-        }));
+        return [...Array(count)].map((_, index) => {
+            const { body, content } = this.generateTextWithTitles(8);
+            return {
+                id: index + 1,
+                version: 1,
+                title: loremIpsum({
+                    count: Math.floor(Math.random() * 6) + 1,
+                    format: 'plain',
+                    units: 'words',
+                }).toUpperCase(),
+                body,
+                content,
+            };
+        });
     }
 
-    private generateTextWithTitles(count: number): string {
-        return [...Array(count)]
+    private generateTextWithTitles(count: number): { body: string; content?: Content } {
+        const headers: { id: number; title: string }[] = [];
+        const body = [...Array(count)]
             .map((_, index) => {
                 const title = loremIpsum({
                     count: Math.floor(Math.random() * 6) + 1,
                     format: 'plain',
                     units: 'words',
-                }).toUpperCase();
+                }).replace(/^\w/, c => c.toUpperCase());
+
                 const body = loremIpsum({
                     count: 3,
                     format: 'html',
@@ -59,9 +67,18 @@ export class FakeArticleService {
                 });
 
                 const id = index + 1;
+                headers.push({ id, title });
 
                 return `<h2 id="${id}">${id}. ${title}</h2>${body}`;
             })
             .join('');
+
+        const content: Content = {
+            subtitles: headers.map(({ id, title }) => ({
+                title: `${id} ${title}`,
+                anchor: id.toString(),
+            })),
+        };
+        return { body, content };
     }
 }

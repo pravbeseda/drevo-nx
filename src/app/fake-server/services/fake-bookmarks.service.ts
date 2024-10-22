@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FakeArticleService } from './fake-article.service';
 import { map, Observable } from 'rxjs';
+import { Bookmark } from '@shared/models/bookmark';
 
 @Injectable({
     providedIn: 'root',

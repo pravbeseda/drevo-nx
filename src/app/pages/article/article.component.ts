@@ -6,6 +6,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { SidebarRightService } from '../../ui/sidebar-right/services/sidebar-right.service';
 import { SafeHtmlPipe } from '@shared/pipes/sefe-html.pipe';
 import { ScrollSpyDirective } from '@shared/directives/scroll-spy.directive';
+import { Article } from '@shared/models/article';
 
 @Component({
     selector: 'drevo-article',
@@ -49,45 +50,12 @@ export class ArticleComponent implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
-        this.sidebarRightService.setContent(null);
+        this.sidebarRightService.setContent(undefined);
     }
 
-    public setContent(_article: Article): void {
+    public setContent(article: Article): void {
         if (this.route?.snapshot.data['showContent'] || this.showContent) {
-            this.sidebarRightService.setContent([
-                {
-                    title: 'Начало статьи',
-                    anchor: '0',
-                    subtitles: [
-                        {
-                            subtitles: [
-                                { title: 'Subpart 1', anchor: '1' },
-                                { title: 'Subpart 2', anchor: '2' },
-                            ],
-                        },
-                        {
-                            title: 'Part 2',
-                            anchor: '3',
-                        },
-                        {
-                            title: 'Part 3',
-                            anchor: '4',
-                        },
-                    ],
-                },
-                {
-                    title: 'Part 4',
-                    anchor: '5',
-                    subtitles: [
-                        { title: 'Subpart 1', anchor: '6' },
-                        { title: 'Subpart 2', anchor: '7' },
-                    ],
-                },
-                {
-                    title: 'Part 5',
-                    anchor: '8',
-                },
-            ]);
+            this.sidebarRightService.setContent(article.content);
         }
     }
 
