@@ -2,14 +2,13 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@a
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { SidebarRightService } from './services/sidebar-right.service';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { assertIsDefined } from '@shared/routines/utils';
 import { BehaviorSubject } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BookmarksComponent } from '../../pages/bookmarks/bookmarks.component';
 import { ArticleContentComponent } from '../article-content/article-content.component';
-import { NavigationService } from '../../core/services/navigation.service';
 
 @UntilDestroy()
 @Component({
@@ -23,7 +22,6 @@ import { NavigationService } from '../../core/services/navigation.service';
         NgIf,
         BookmarksComponent,
         ArticleContentComponent,
-        NgForOf,
     ],
     templateUrl: './sidebar-right.component.html',
     styleUrl: './sidebar-right.component.scss',
@@ -37,10 +35,7 @@ export class SidebarRightComponent implements AfterViewInit {
     private readonly selectedTabIndexSubject = new BehaviorSubject<number | undefined>(undefined);
     public readonly selectedTabIndex$ = this.selectedTabIndexSubject.asObservable();
 
-    constructor(
-        private readonly sidebarRightService: SidebarRightService,
-        private readonly navigationService: NavigationService
-    ) {}
+    constructor(private readonly sidebarRightService: SidebarRightService) {}
 
     ngAfterViewInit(): void {
         assertIsDefined(this.tabGroup, 'SidebarRightComponent tabGroup');
@@ -56,9 +51,5 @@ export class SidebarRightComponent implements AfterViewInit {
 
     public tabChanged(tabIndex: number): void {
         this.selectedTabIndexSubject.next(tabIndex);
-    }
-
-    public scrollTo(anchor: string): void {
-        this.navigationService.scrollTo(anchor);
     }
 }
