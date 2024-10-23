@@ -51,7 +51,13 @@ export class FakeArticleService {
     }
 
     private generateTextWithTitles(count: number): { body: string; content?: Content } {
-        const headers: { id: number; title: string }[] = [];
+        const headers: { id: number; title: string; anchor: string }[] = [];
+        const subHeaders: Record<number, number[]> = {
+            1: [2, 3],
+            4: [5, 6],
+        };
+        const subtitlesPlain = Object.values(subHeaders).flat();
+
         const body = [...Array(count)]
             .map((_, index) => {
                 const title = loremIpsum({
@@ -67,16 +73,21 @@ export class FakeArticleService {
                 });
 
                 const id = index + 1;
-                headers.push({ id, title });
-
-                return `<h2 id="${id}">${id}. ${title}</h2>${body}`;
+                headers.push({ id, title: `${id} ${title}`, anchor: id.toString() });
+                const tag = subtitlesPlain.includes(id) ? 'h3' : 'h2';
+                return `<${tag} id="${id}">${id}. ${title}</${tag}>${body}`;
             })
             .join('');
 
+        const mainHeaders = headers.filter(({ id }) => !subtitlesPlain.includes(id));
+
         const content: Content = {
-            subtitles: headers.map(({ id, title }) => ({
-                title: `${id} ${title}`,
-                anchor: id.toString(),
+            subtitles: mainHeaders.map(({ id, title, anchor }) => ({
+                title,
+                anchor,
+                subtitles: subHeaders[id]
+                    ? subHeaders[id].map(subId => headers.find(header => header.id === subId)!)
+                    : [],
             })),
         };
         return { body, content };
