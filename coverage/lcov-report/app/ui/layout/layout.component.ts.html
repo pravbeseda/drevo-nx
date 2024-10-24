@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">95.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>21/22</span>
             </div>
         
             
@@ -108,7 +108,14 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -142,6 +149,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -152,15 +160,21 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ChangeDetectionStrategy, Component } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { AsyncPipe } from '@angular/common';
 import { LayoutService, ScreenSize } from '../../core/services/layout.service';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { SidebarLeftComponent } from '../sidebar-left/sidebar-left.component';
 import { SidebarRightComponent } from '../sidebar-right/sidebar-right.component';
@@ -187,6 +201,7 @@ const MATERIAL_IMPORTS = [MatButtonModule];
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
+    @ViewChild('mainContainer') mainContainer: MatSidenavContent | undefined;
     public readonly theme$ = this.themeService.currentTheme$;
     public readonly isMobile$ = this.layoutService.isMobile$;
     public readonly isLargeScreen$ = this.layoutService.currentScreenSize$.pipe(
@@ -196,7 +211,13 @@ export class LayoutComponent {
     constructor(
         private readonly themeService: ThemeService,
         private readonly layoutService: LayoutService
-    ) {}
+    ) {
+        this.layoutService.resetScroll$.subscribe(<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >this.scrollToTop())</span>;
+    }
+&nbsp;
+    public <span class="fstat-no" title="function not covered" >scrollToTop(</span>) {
+<span class="cstat-no" title="statement not covered" >        this.mainContainer?.scrollTo({ top: 0 });</span>
+    }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -205,7 +226,7 @@ export class LayoutComponent {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-22T02:37:22.288Z
+                at 2024-10-24T02:34:36.151Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
