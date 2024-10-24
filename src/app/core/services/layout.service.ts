@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
-import {
-    BreakpointObserver,
-    BreakpointState,
-    Breakpoints,
-} from '@angular/cdk/layout';
+import { map, Subject } from 'rxjs';
+import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 
 export enum ScreenSize {
     Unknown = 0,
@@ -36,11 +32,16 @@ export class LayoutService {
             Breakpoints.XLarge,
         ])
         .pipe(map(this.screenSizeMapper));
-    public readonly isMobile$ = this.currentScreenSize$.pipe(
-        map(size => size < ScreenSize.Medium)
-    );
+    public readonly isMobile$ = this.currentScreenSize$.pipe(map(size => size < ScreenSize.Medium));
+
+    private readonly resetScrollSubject = new Subject<void>();
+    public readonly resetScroll$ = this.resetScrollSubject.asObservable();
 
     constructor(private readonly breakpointObserver: BreakpointObserver) {}
+
+    public resetScroll(): void {
+        this.resetScrollSubject.next();
+    }
 
     private screenSizeMapper(breakpointState: BreakpointState): ScreenSize {
         let result = ScreenSize.Unknown;

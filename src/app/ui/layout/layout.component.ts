@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { AsyncPipe } from '@angular/common';
 import { LayoutService, ScreenSize } from '../../core/services/layout.service';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { SidebarLeftComponent } from '../sidebar-left/sidebar-left.component';
 import { SidebarRightComponent } from '../sidebar-right/sidebar-right.component';
@@ -32,6 +32,7 @@ const MATERIAL_IMPORTS = [MatButtonModule];
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
+    @ViewChild('mainContainer') mainContainer: MatSidenavContent | undefined;
     public readonly theme$ = this.themeService.currentTheme$;
     public readonly isMobile$ = this.layoutService.isMobile$;
     public readonly isLargeScreen$ = this.layoutService.currentScreenSize$.pipe(
@@ -41,5 +42,11 @@ export class LayoutComponent {
     constructor(
         private readonly themeService: ThemeService,
         private readonly layoutService: LayoutService
-    ) {}
+    ) {
+        this.layoutService.resetScroll$.subscribe(() => this.scrollToTop());
+    }
+
+    public scrollToTop() {
+        this.mainContainer?.scrollTo({ top: 0 });
+    }
 }

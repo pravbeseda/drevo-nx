@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgClass, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Content } from '@shared/models/content';
+import { ArticleContent } from '@shared/models/article-content';
 
 @Component({
     selector: 'drevo-article-content',
@@ -13,5 +13,5 @@ import { Content } from '@shared/models/content';
 })
 export class ArticleContentComponent {
     @Input()
-    public content: Content | undefined;
+    public content: ArticleContent | undefined;
 }

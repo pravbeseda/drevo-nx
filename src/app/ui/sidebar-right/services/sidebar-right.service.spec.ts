@@ -13,10 +13,13 @@ describe('SidebarRightService', () => {
         expect(spectator.service).toBeTruthy();
     });
 
-    it.each([[{ id: 1, title: 'test', anchor: 'test' }], null])('should set content', content => {
-        const setContentSpy = jest.fn();
-        spectator.service.content$.subscribe(setContentSpy);
-        spectator.service.setContent(content);
-        expect(setContentSpy).toHaveBeenLastCalledWith(content);
-    });
+    it.each([{ id: 1, title: 'test', anchor: 'test' }, undefined])(
+        'should set content',
+        content => {
+            const setContentSpy = jest.fn();
+            spectator.service.content$.subscribe(setContentSpy);
+            spectator.service.setContent(content);
+            expect(setContentSpy).toHaveBeenLastCalledWith(content);
+        }
+    );
 });

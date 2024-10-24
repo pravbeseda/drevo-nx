@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { loremIpsum } from 'lorem-ipsum';
 import { Article } from '@shared/models/article';
-import { Content } from '@shared/models/content';
+import { ArticleContent } from '@shared/models/article-content';
 
 @Injectable({
     providedIn: 'root',
@@ -50,7 +50,7 @@ export class FakeArticleService {
         });
     }
 
-    private generateTextWithTitles(count: number): { body: string; content?: Content } {
+    private generateTextWithTitles(count: number): { body: string; content?: ArticleContent } {
         const headers: { id: number; title: string; anchor: string }[] = [];
         const subHeaders: Record<number, number[]> = {
             1: [2, 3],
@@ -81,7 +81,7 @@ export class FakeArticleService {
 
         const mainHeaders = headers.filter(({ id }) => !subtitlesPlain.includes(id));
 
-        const content: Content = {
+        const content: ArticleContent = {
             subtitles: mainHeaders.map(({ id, title, anchor }) => ({
                 title,
                 anchor,

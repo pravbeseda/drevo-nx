@@ -5,14 +5,15 @@ import { ActivatedRoute } from '@angular/router';
 import { SidebarRightService } from './services/sidebar-right.service';
 import { Subject } from 'rxjs';
 import { fakeAsync } from '@angular/core/testing';
+import { ArticleContent } from '@shared/models/article-content';
 
 describe('SidebarRightContentComponent', () => {
     let spectator: Spectator<SidebarRightComponent>;
-    let content$: Subject<Content | null>;
+    let content$: Subject<ArticleContent | null>;
     const createComponent = createComponentFactory(SidebarRightComponent);
 
     beforeEach(() => {
-        content$ = new Subject<Content | null>();
+        content$ = new Subject<ArticleContent | null>();
         spectator = createComponent({
             providers: [
                 mockProvider(ActivatedRoute),
