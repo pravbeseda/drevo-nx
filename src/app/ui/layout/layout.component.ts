@@ -46,7 +46,7 @@ export class LayoutComponent {
         this.layoutService.resetScroll$.subscribe(() => this.scrollToTop());
     }
 
-    public scrollToTop() {
+    private scrollToTop() {
         this.mainContainer?.scrollTo({ top: 0 });
     }
 }
